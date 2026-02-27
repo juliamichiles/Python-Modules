@@ -1,0 +1,14 @@
+=== Garden Plant Health Checker ===
+
+Testing good values...
+Plant 'tomato' is healthy!
+
+Testing empty plant name...
+Error: Plant name cannot be empty!
+
+Testing bad water level...
+Error: Water level 15 is too high (max 10)
+
+Testing bad sunlight hours...
+Error: Sunlight hours 0 is too low (min 2)
+All error raising tests completed!

@@ -1,0 +1,18 @@
+=== Garden Error Types Demo ===
+
+Testing ValueError...
+Caught ValueError: invalid literal for int()
+
+Testing ZeroDivisionError...
+Caught ZeroDivisionError: division by zero
+
+Testing FileNotFoundError...
+Caught FileNotFoundError: No such file 'missing.txt'
+
+Testing KeyError...
+Caught KeyError: 'missing\_plant'
+
+Testing multiple errors together...
+Caught an error, but program continues!
+
+All error types tested successfully!

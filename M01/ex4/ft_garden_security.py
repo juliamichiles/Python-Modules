@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 class SecurePlant:
     def __init__(self, name, height=0, age=0):
         self.name = name

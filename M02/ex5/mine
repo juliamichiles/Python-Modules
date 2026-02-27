@@ -1,0 +1,22 @@
+=== Garden Management System ===
+
+Adding plants to garden...
+Added tomato successfully
+Added lettuce successfully
+Error adding plant: Plant name cannot be empty!
+
+Watering plants...
+Opening watering system
+Watering tomato - success
+Watering lettuce - success
+Closing watering system (cleanup)
+
+Checking plant health...
+tomato: healthy (water: 5, sun: 8)
+Error checking lettuce: Water level 15 is too high (max 10)
+
+Testing error recovery...
+Caught GardenError: Not enough water in tank
+System recovered and continuing...
+
+Garden management system test complete!
