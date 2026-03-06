@@ -10,7 +10,8 @@ class SecurePlant:
 
     def set_height(self, height):
         if height < 0:
-            print(f"\nInvalid operation attempted: height {height}cm [REJECTED]")
+            print("\nInvalid operation attempted: "
+                  f"height {height}cm [REJECTED]")
             print("Security: Negative height rejected")
         else:
             self._height = height
@@ -38,7 +39,8 @@ def ft_garden_security():
     plant.set_age(30)
     print(f"Age updated: {plant.get_age()} days [OK]")
     plant.set_height(-5)
-    print(f"\nCurrent plant: {plant.name} ({plant.get_height()}cm, {plant.get_age()} days)")
+    print(f"\nCurrent plant: {plant.name} ({plant.get_height()}cm, "
+          f"{plant.get_age()} days)")
 
 
 if __name__ == "__main__":

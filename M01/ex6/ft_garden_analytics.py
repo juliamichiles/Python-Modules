@@ -3,8 +3,8 @@
 # ------------------- PLANTS -----------------------
 
 class Plant:
-    # Base Plant 
-   
+    # Base Plant
+
     def __init__(self, name: str, height: int) -> None:
         self.name = name
         self.height = height
@@ -19,8 +19,9 @@ class Plant:
     def get_category(self) -> str:
         return "regular"
 
+
 class FloweringPlant(Plant):
-    # Plant that can bloom 
+    # Plant that can bloom
 
     def __init__(self,
                  name: str,
@@ -45,8 +46,8 @@ class FloweringPlant(Plant):
 
 
 class PrizeFlower(FloweringPlant):
-    # Flowering plant with prize points 
-    
+    # Flowering plant with prize points
+
     def __init__(self,
                  name: str,
                  height: int,
@@ -62,6 +63,7 @@ class PrizeFlower(FloweringPlant):
     def get_category(self) -> str:
         return "prize"
 
+
 # ------------------- GARDEN ---------------------
 
 class Garden:
@@ -75,7 +77,6 @@ class Garden:
     def add_plant(self, plant: Plant) -> str:
         self.plants.append(plant)
         return (f"Added {plant.name} to {self.owner}'s garden")
-        #change back to return None and print str??
 
     def grow_all(self) -> None:
         print(f"{self.owner} is helping all plants grow...")
@@ -85,7 +86,7 @@ class Garden:
 
     def report(self) -> None:
         print(f"\n=== {self.owner}'s Graden Report ===")
-        print(f"Plants in garden:")
+        print("Plants in garden:")
         for plant in self.plants:
             print(f"- {plant.get_info()}")
 
@@ -116,7 +117,7 @@ class GardenManager:
 
         @staticmethod
         def validate_height(height: int) -> bool:
-                    return height >= 0
+            return height >= 0
 
 #  --------------
 
@@ -143,14 +144,14 @@ class GardenManager:
 # ------------- GARDEN DEMO --------------
 
 def ft_garden_analytics() -> None:
-    
-    print(f"=== Garden Management System Demo ===\n")
+
+    print("=== Garden Management System Demo ===\n")
 
     manager = GardenManager()
-    
+
     alice_garden = Garden("Alice")
     bob_garden = Garden("Bob")
-    
+
     manager.add_garden(alice_garden)
     manager.add_garden(bob_garden)
 
@@ -178,12 +179,13 @@ def ft_garden_analytics() -> None:
 
     )
 
-    print (
+    print(
         f"Height validation test: "
         f"{GardenManager.GardenStats.validate_height(10)}"
     )
 
     print(GardenManager.create_garden_network())
+
 
 if __name__ == "__main__":
     ft_garden_analytics()

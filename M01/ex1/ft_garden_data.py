@@ -7,7 +7,7 @@ class Plant:
         self.age = age
 
 
-def ft_garden_data():
+def ft_garden_data() -> None:
     plants = [
         Plant("Rose", 25, 30),
         Plant("Sunflower", 80, 45),
