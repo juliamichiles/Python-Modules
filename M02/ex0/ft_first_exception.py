@@ -19,6 +19,7 @@ def check_temperature(temp_str: str) -> int | None:
             print(f"Temperature {n}°C is perfect for plants!\n")
             return n
 
+
 def test_temperature_input() -> None:
 
     print("=== Garden Temperature Checker ===\n")
@@ -29,8 +30,8 @@ def test_temperature_input() -> None:
             "-50",
         ]
     for string in strings:
-       check_temperature(string) 
-    
+        check_temperature(string)
+
     print("All tests completed - program didn't crash!")
 
 

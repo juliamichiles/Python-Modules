@@ -2,6 +2,7 @@
 
 """ ============= ERRORS ============= """
 
+
 class GardenError(Exception):
     pass
 
@@ -19,6 +20,7 @@ class WaterError(GardenError):
 
 """ ============= GARDEN MANAGER ============= """
 
+
 class GardenManager:
     def __init__(self):
         self.plants = {}
@@ -27,9 +29,10 @@ class GardenManager:
     def tank_capacity(self) -> None:
         if self.water_tank < 2:
             raise WaterError("Not enough water in tank")
-        elif self.water_tank  > 10:
-            raise WaterError(f"Water level {self.water_tank} is too high (max 10)")
- 
+        elif self.water_tank > 10:
+            raise WaterError(f"Water level {self.water_tank}"
+                             f" is too high (max 10)")
+
     def check_health(self) -> None:
         for name, data in self.plants.items():
             try:
@@ -38,7 +41,8 @@ class GardenManager:
                 if water < 2:
                     raise PlantError(name)
                 if water > 10:
-                    raise WaterError(f"Water level {water} is too high (max 10)")
+                    raise WaterError(f"Water level {water}"
+                                     f" is too high (max 10)")
                 if sun < 2 or sun > 10:
                     raise GardenError("Unhealty sunlight level")
                 print(f"{name}: healthy (water: {water}, sun: {data['sun']})")

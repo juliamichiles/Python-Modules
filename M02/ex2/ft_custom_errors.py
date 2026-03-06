@@ -16,21 +16,21 @@ class WaterError(GardenError):
 
 
 # ------------ Errors ---------------
-
 def tank_capacity(water: int) -> None:
     if water < 2:
         raise WaterError("Not enough water in the tank")
     elif water > 90:
         raise WaterError("Tank is about to overflow")
 
+
 def wilting(is_healthy: bool, plant_name: str) -> None:
     if not is_healthy:
         raise PlantError(plant_name)
 
-# ------------ Demo ---------------
 
+# ------------ Demo ---------------
 def errors_demo() -> None:
-    
+
     print("=== Custom Garden Errors Demo ===\n")
 
     print("Testing PlantError...")
@@ -46,7 +46,7 @@ def errors_demo() -> None:
         print(f"Caught WaterError: {e}")
 
     print("\nTesting catching all garden errors...")
-    
+
     try:
         wilting(False, "tomato")
     except GardenError as e:
@@ -57,6 +57,7 @@ def errors_demo() -> None:
     except GardenError as e:
         print(f"Caught a garden error: {e}")
     print("\nAll custom error types work correctly!")
+
 
 if __name__ == "__main__":
     errors_demo()

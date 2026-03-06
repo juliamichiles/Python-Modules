@@ -3,6 +3,7 @@
 class Error(Exception):
     pass
 
+
 def water_plants(plant_list: list) -> None:
     print("Opening watering system")
     try:
@@ -13,8 +14,8 @@ def water_plants(plant_list: list) -> None:
     finally:
         print("Closing watering system (cleanup)")
 
-# ---------- DEMO ------------
 
+# ---------- DEMO ------------
 def test_watering_system() -> None:
 
     bad_plants = ["tomato", None]
@@ -28,7 +29,7 @@ def test_watering_system() -> None:
         print(f"Error: {e}")
     else:
         print("Watering completed successfully!\n")
-    
+
     print("Testing with error...")
     try:
         water_plants(bad_plants)
@@ -40,5 +41,5 @@ def test_watering_system() -> None:
         print("\nCleanup always happens, even with errors!")
 
 
-if __name__ == "__main__": 
-    test_watering_system() 
+if __name__ == "__main__":
+    test_watering_system()

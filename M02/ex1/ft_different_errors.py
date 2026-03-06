@@ -7,7 +7,7 @@ def garden_operations() -> None:
         int("abc")
     except ValueError:
         print("Caught ValueError: invalid literal for int()\n")
-    
+
     print("Testing ZeroDivisionError...")
     try:
         10 / 0
@@ -18,7 +18,7 @@ def garden_operations() -> None:
     try:
         open('missing.txt')
     except FileNotFoundError:
-        print(f"Caught FileNotFoundError: No such file 'missing.txt'\n")
+        print("Caught FileNotFoundError: No such file 'missing.txt'\n")
 
     print("Testing KeyError...")
     test_dict = {"plant": "rose", "age": 25}
@@ -33,10 +33,10 @@ def test_error_types() -> None:
     garden_operations()
     try:
         int("abc") / 0
-    except(ZeroDivisionError, ValueError):
+    except (ZeroDivisionError, ValueError):
         print("Caught an error, but program continues!\n")
     print("All error types tested successfully!")
 
 
-if __name__ == "__main__": 
+if __name__ == "__main__":
     test_error_types()

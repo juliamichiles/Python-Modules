@@ -1,3 +1,3 @@
 [ ] Ex3 prints error message too late, but respects requirements
 [ ] Should have used input for ex2???
-[ ] Flake8 all exercises!!
+[X] Flake8 all exercises!!
