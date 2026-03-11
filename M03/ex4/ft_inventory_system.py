@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 
+
 def print_sorted(items: dict, total: int) -> None:
     temp = dict()
     temp.update(items)
@@ -9,7 +10,7 @@ def print_sorted(items: dict, total: int) -> None:
     while len(temp) > 0:
         max_key = None
         max_value = -1
-        
+
         for key, value in temp.items():
             if max_key is None or value > max_value:
                 max_key = key
@@ -18,7 +19,7 @@ def print_sorted(items: dict, total: int) -> None:
         percent = max_value / total * 100
         unit = "unit" if max_value == 1 else "units"
         print(f"{max_key}: {max_value} {unit} ({percent:.1f}%)")
-        
+
         new_temp = dict()
         for key, value in temp.items():
             if key != max_key:
@@ -27,9 +28,9 @@ def print_sorted(items: dict, total: int) -> None:
 
 
 def print_format(category: str, items: dict, count: int, b: bool) -> None:
-    
+
     print(f"{category}:", end=" ")
-    
+
     i = 0
     if b is True:
         for key in items.keys():
@@ -46,8 +47,9 @@ def print_format(category: str, items: dict, count: int, b: bool) -> None:
             else:
                 print(value)
 
+
 def ft_inventory_system() -> None:
-   
+
     items = sys.argv[1:]
     inventory = dict()
     item_types = len(items)
@@ -56,7 +58,7 @@ def ft_inventory_system() -> None:
     for item in items:
         name, qty = item.split(":")
         inventory.update({name: int(qty)})
-    
+
     total = 0
     scarce = dict()
     moderate = dict()
@@ -74,16 +76,16 @@ def ft_inventory_system() -> None:
             moderate.update({key: value})
         if value == 1:
             restock.update({key: value})
-    
+
     print("\n=== Inventory Statistics ===")
     least_value = -1
     least_key = None
-    
+
     most_value = -1
-    most_key = None 
-    
+    most_key = None
+
     for key, value in inventory.items():
-        
+
         if most_key is None or value > most_value:
             most_value = value
             most_key = key
@@ -109,5 +111,5 @@ def ft_inventory_system() -> None:
     print(f"Sample lookup - 'sword' in inventory: {'sword' in inventory}")
 
 
-if __name__ == "__main__":  
+if __name__ == "__main__":
     ft_inventory_system()
