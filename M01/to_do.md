@@ -13,7 +13,8 @@ EX6 [ ]
 [ ] Take a LOT of notes on ex6
 
 [ ] See if everyting is still working after shebang
-[ ] ADD TYPE HINTS!!
+[X] ADD TYPE HINTS!!
+[X] Flake8
 [ ] How much freedom do I have to format, create plants, etc.?
 [X] Double check ex2
 [ ] Double check ex4

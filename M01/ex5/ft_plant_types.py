@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 class Plant:
-    def __init__(self, name: str, height: int, age: int):
+    def __init__(self, name: str, height: int, age: int) -> None:
         self.name = name
         self.height = height
         self.age = age
@@ -18,7 +18,7 @@ class Flower(Plant):
                  name: str,
                  height: int,
                  age: int,
-                 color: str):
+                 color: str) -> None:
         super().__init__(name, height, age)
         self.color = color
 
@@ -36,7 +36,7 @@ class Vegetable(Plant):
                  height: int,
                  age: int,
                  harvest_season: str,
-                 nutritional_value: str):
+                 nutritional_value: str) -> None:
         super().__init__(name, height, age)
         self.nutritional_value = nutritional_value
         self.harvest_season = harvest_season
@@ -67,7 +67,7 @@ class Tree(Plant):
         return f"{base_info}, {self.trunk_diameter}cm trunk diameter"
 
 
-def ft_plant_types():
+def ft_plant_types() -> None:
     flowers_info = [
         ("Rose", 25, 30, "Red"),
         ("Sunflower", 80, 45, "Yellow"),
