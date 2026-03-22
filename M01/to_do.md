@@ -5,14 +5,11 @@ EX2 [X] - Doesn't look like example, but respects requirements
 EX3 [ ]
 EX4 [ ]
 EX5 [ ]
-EX6 [ ]
+EX6 [X]
 
 ---
 
-[ ] Ex6 is not printing Bob's garden
-[ ] Take a LOT of notes on ex6
-
-[ ] See if everyting is still working after shebang
+[ ] Check/fix exs3 to 5
 [X] ADD TYPE HINTS!!
 [X] Flake8
 [ ] How much freedom do I have to format, create plants, etc.?
