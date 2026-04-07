@@ -1,85 +1,84 @@
 #!/usr/bin/python3
+import random 
+
 
 class Player:
     def __init__(self, name: str, achievements: set):
         self.name = name
         self.achievements = achievements
 
-    def get_achievements(self) -> str:
+    def __str__(self) -> str:
         ach = self.achievements
         return f"Player {self.name} achievements: {ach}"
 
-    def count_achievements(self) -> int:
+    def count_achievements(self) -> int:  # remove??
         return len(self.achievements)
+
+
+def gen_player_achievements(all_achievements: list) -> set:
+    count = random.randint(3, len(all_achievements) - 2)
+    return set(random.sample(all_achievements, count))
 
 
 def ft_achievement_tracker() -> None:
 
-    """ ====== CREATING PLAYERS ====== """
-    alice = Player(
-            "alice",
-            {
-                'first_kill',
-                'level_10',
-                'treasure_hunter',
-                'speed_demon'
-             }
-    )
+    all_achievements = [
+        'First Steps',
+        'Treasure Hunter',
+        'Master Explorer',
+        'Speed Runner',
+        'Survivor',
+        'Strategist',
+        'Untouchable',
+        'Unstoppable',
+        'Boss Slayer',
+        'Crafting Genius',
+        'World Savior',
+        'Collector Supreme',
+        'Sharp Mind',
+        'Hidden Path Finder'
+    ]
 
-    bob = Player(
-            "bob",
-            {
-                'first_kill',
-                'level_10',
-                'boss_slayer',
-                'collector'
-            }
-    )
-
-    charlie = Player(
-            "charlie",
-            {
-                'level_10',
-                'treasure_hunter',
-                'boss_slayer',
-                'speed_demon',
-                'perfectionist'
-                }
-    )
-
-    """ ======== calculating achievement's stats' ======== """
-    unique = alice.achievements.union(bob.achievements)
-    unique = unique.union(charlie.achievements)
-
-    common = alice.achievements.intersection(bob.achievements)
-    common = common.intersection(charlie.achievements)
-
-    bob_alice = alice.achievements.intersection(bob.achievements)
-
-    alice_unique = alice.achievements - bob.achievements
-    bob_unique = bob.achievements - alice.achievements
-
-    """ ======== calculating rare achievements ======== """
-    bob_rare = bob.achievements - alice.achievements - charlie.achievements
-    alice_rare = alice.achievements - charlie.achievements - bob.achievements
-    charlie_rare = charlie.achievements - bob.achievements - alice.achievements
-    rare = bob_rare.union(alice_rare).union(charlie_rare)
+    players = [
+        Player("Alice", gen_player_achievements(all_achievements)),
+        Player("Bob", gen_player_achievements(all_achievements)),
+        Player("Charlie", gen_player_achievements(all_achievements)),
+        Player("Dylan", gen_player_achievements(all_achievements)),
+    ]
 
     print("=== Achievement Tracker System ===\n")
-    print(f"{alice.get_achievements()}")
-    print(f"{bob.get_achievements()}")
-    print(f"{charlie.get_achievements()}")
+    for p in players:
+        print(p)
 
-    print("\n=== Achievement Analytics ===")
-    print(f"All unique achievements: {unique}")
-    print(f"Total unique achievements: {len(unique)}\n")
-    print(f"Common to all players: {common}")
-    print(f"Rare achievements (1 player): {rare}")
+    # ======== calculating achievement's stats' ======== 
+    
+    unique = set()
+    for p in players:
+        unique = unique.union(p.achievements)
 
-    print(f"\nAlice vs Bob common: {bob_alice}")
-    print(f"Alice unique: {alice_unique}")
-    print(f"Bob unique: {bob_unique}")
+    print(f"\nAll distinct achievements: {unique}")
 
+    common = players[0].achievements
+    for p in players[1:]:
+        common = common.intersection(p.achievements)
+    
+    print(f"\nCommon achievements: {common}")
+
+
+    # ======== calculating rare achievements ======== 
+    for p in players:
+        others = set()
+        for other in players:
+            if other != p:
+                others = others.union(other.achievements)
+        rare = p.achievements.difference(others)
+        print(f"Only {p.name} has: {rare}")
+
+    # ======== calculating missing achievements ========
+    print("")
+    for p in players:
+        missing = set(all_achievements).difference(p.achievements)
+        print(f"{p.name} is missing: {missing}")
 
 if __name__ == "__main__":
     ft_achievement_tracker()
