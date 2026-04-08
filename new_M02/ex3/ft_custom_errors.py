@@ -6,8 +6,7 @@ class GardenError(Exception):
 
 
 class PlantError(GardenError):
-    def __init__(self, plant_name: str):
-        message = f"The {plant_name} plant is wilting!"
+    def __init__(self, message: str = "Unknown plant error!"):
         super().__init__(message)
 
 
@@ -26,7 +25,7 @@ def tank_capacity(water: int) -> None:
 
 def wilting(is_healthy: bool, plant_name: str) -> None:
     if not is_healthy:
-        raise PlantError(plant_name)
+        raise PlantError(f"The {plant_name} is wilting!")
 
 
 # ------------ Demo ---------------

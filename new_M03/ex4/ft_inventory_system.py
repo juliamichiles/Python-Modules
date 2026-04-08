@@ -1,115 +1,111 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 import sys
 
 
-def print_sorted(items: dict, total: int) -> None:
-    temp = dict()
-    temp.update(items)
+def pytoi(nb: str) -> int:
 
-    print("\n=== Current Inventory ===")
-    while len(temp) > 0:
-        max_key = None
-        max_value = -1
+    digits = "0123456789"
+    n = 0
+    sign = 1
+    num = nb
 
-        for key, value in temp.items():
-            if max_key is None or value > max_value:
-                max_key = key
-                max_value = value
+    if num[0] == '-':
+        sign = -1
+        num = nb[1:]
+    elif num[0] == '+':
+        num = nb[1:]
 
-        percent = max_value / total * 100
-        unit = "unit" if max_value == 1 else "units"
-        print(f"{max_key}: {max_value} {unit} ({percent:.1f}%)")
-
-        new_temp = dict()
-        for key, value in temp.items():
-            if key != max_key:
-                new_temp.update({key: value})
-        temp = new_temp
-
-
-def print_format(category: str, items: dict, count: int, b: bool) -> None:
-
-    print(f"{category}:", end=" ")
-
-    i = 0
-    if b is True:
-        for key in items.keys():
+    for c in num:
+        i = 0
+        found = False
+        for d in digits:
+            if c == d:
+                found = True
+                break
             i += 1
-            if i < count:
-                print(f"{key}, ", end="")
-            else:
-                print(key)
-    else:
-        for value in items.values():
-            i += 1
-            if i < count:
-                print(f"{value}, ", end="")
-            else:
-                print(value)
+        if not found:
+            raise ValueError(f"could not convert string to int: '{nb}'")
+        n = n * 10 + i
+
+    return n * sign
 
 
-def ft_inventory_system() -> None:
+def parse_inventory(args: list) -> tuple:
+    inventory = {}
+    order = []
 
-    items = sys.argv[1:]
-    inventory = dict()
-    item_types = len(items)
+    for arg in args:
+        if ':' not in arg:
+            print(f"Error - invalid parameter '{arg}'")
+            continue
+        parts = arg.split(':')
+        if len(parts) != 2:
+            print(f"Error - invalid parameter '{arg}'")
+            continue
+        name, qty_str = parts
 
+        if name in inventory:
+            print(f"Redundant item '{name}' - discarding")
+            continue
+
+        try:
+            qty = pytoi(qty_str)
+        except Exception as e:
+            print(f"Quantity error for '{name}': {e}")
+            continue
+
+        inventory[name] = qty
+        order.append(name)
+
+    return inventory, order
+
+
+def print_inventory_analysis(inventory: dict, order: list) -> None:
     print("=== Inventory System Analysis ===")
-    for item in items:
-        name, qty = item.split(":")
-        inventory.update({name: int(qty)})
+    print(f"Got inventory: {inventory}")
 
-    total = 0
-    scarce = dict()
-    moderate = dict()
-    restock = dict()
+    total = sum(inventory.values())
+    items = list(inventory.keys())
 
-    for key, value in inventory.items():
-        total += value
-    print(f"Total items in inventory: {total}")
-    print(f"Unique item types: {item_types}")
-    print_sorted(inventory, total)
-    for key, value in inventory.items():
-        if value < 4:
-            scarce.update({key: value})
-        elif value < 6:
-            moderate.update({key: value})
-        if value == 1:
-            restock.update({key: value})
+    print(f"Item list: {items}")
+    print(f"Total quantity of the {len(items)} items: {total}")
 
-    print("\n=== Inventory Statistics ===")
-    least_value = -1
-    least_key = None
+    # Percentages
+    for item in order:
+        percent = (inventory[item] / total) * 100
+        print(f"Item {item} represents {round(percent, 1)}%")
 
-    most_value = -1
-    most_key = None
+    if total > 0:
+        # Percentages
+        for item in order:
+            percent = (inventory[item] / total) * 100
+            print(f"Item {item} represents {round(percent, 1)}%")
 
-    for key, value in inventory.items():
+        # Most & least abundant
+        max_item = None
+        min_item = None
+        for item in order:
+            if max_item is None or inventory[item] > inventory[max_item]:
+                max_item = item
+            if min_item is None or inventory[item] < inventory[min_item]:
+                min_item = item
 
-        if most_key is None or value > most_value:
-            most_value = value
-            most_key = key
+        print(f"Item most abundant: {max_item} with quantity {inventory[max_item]}")
+        print(f"Item least abundant: {min_item} with quantity {inventory[min_item]}")
+    else:
+        print("No items in inventory to analyze.")
 
-        if least_key is None or value < least_value:
-            least_value = value
-            least_key = key
+def add_new_item(inventory):
+    inventory.update({"magic_item": 1})
+    print(f"Updated inventory: {inventory}")
 
-    unit = "unit" if most_value == 1 else "units"
-    print(f"Most abundant: {most_key} ({most_value} {unit})")
-    unit = "unit" if least_value == 1 else "units"
-    print(f"Least abundant: {least_key} ({least_value} {unit})")
 
-    print("\n=== Item Categories ===")
-    print(f"Moderate: {moderate}")
-    print(f"Scarce: {scarce}")
-    print("\n=== Management Suggestions ===")
-    print_format("Restock needed", restock, len(restock), True)
+def main() -> None:
+    args = sys.argv[1:]
 
-    print("\n=== Dictionary Properties Demo ===")
-    print_format("Dictionary keys", inventory, len(inventory), True)
-    print_format("Dictionary values", inventory, len(inventory), False)
-    print(f"Sample lookup - 'sword' in inventory: {'sword' in inventory}")
-
+    inventory, order = parse_inventory(args)
+    print_inventory_analysis(inventory, order)
+    add_new_item(inventory)
 
 if __name__ == "__main__":
-    ft_inventory_system()
+    main()

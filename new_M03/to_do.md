@@ -3,9 +3,10 @@
 	[X] ex1
     [X] ex2
     [X] ex3
-    [ ] ex4
-    [ ] ex5
-    [ ] ex6
+    [X] ex4
+    [X] ex5 - uses .pop(), but I think would be incorrect to do otherwise
+    	[ ] More tests
+	[ ] ex6
 
-[ ] Maybe fix formatting in ex3?
+[x] Maybe fix formatting in ex3? - NO!
 [ ] Flake8 and mypy all exs!!!
