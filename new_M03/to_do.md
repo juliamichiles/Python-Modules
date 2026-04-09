@@ -6,7 +6,8 @@
     [X] ex4
     [X] ex5 - uses .pop(), but I think would be incorrect to do otherwise
     	[ ] More tests
-	[ ] ex6
+	[X] ex6
+		[ ] More tests
 
 [x] Maybe fix formatting in ex3? - NO!
 [ ] Flake8 and mypy all exs!!!

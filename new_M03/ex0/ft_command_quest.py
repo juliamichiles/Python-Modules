@@ -3,7 +3,7 @@ import sys
 
 
 def ft_command_quest() -> None:
-    
+
     print("=== Command Quest ===")
     print(f"Program name: {sys.argv[0]}")
 
@@ -18,6 +18,7 @@ def ft_command_quest() -> None:
             i += 1
 
     print(f"Total arguments: {count}\n")
+
 
 if __name__ == "__main__":
     ft_command_quest()

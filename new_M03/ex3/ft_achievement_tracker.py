@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-import random 
+import random
 
 
 class Player:
@@ -50,9 +50,9 @@ def ft_achievement_tracker() -> None:
     for p in players:
         print(p)
 
-    # ======== calculating achievement's stats' ======== 
-    
-    unique = set()
+    # ======== calculating achievement's stats' ========
+
+    unique: set[str] = set()
     for p in players:
         unique = unique.union(p.achievements)
 
@@ -61,13 +61,12 @@ def ft_achievement_tracker() -> None:
     common = players[0].achievements
     for p in players[1:]:
         common = common.intersection(p.achievements)
-    
+
     print(f"\nCommon achievements: {common}")
 
-
-    # ======== calculating rare achievements ======== 
+    # ======== calculating rare achievements ========
     for p in players:
-        others = set()
+        others: set[str] = set()
         for other in players:
             if other != p:
                 others = others.union(other.achievements)
@@ -79,6 +78,7 @@ def ft_achievement_tracker() -> None:
     for p in players:
         missing = set(all_achievements).difference(p.achievements)
         print(f"{p.name} is missing: {missing}")
+
 
 if __name__ == "__main__":
     ft_achievement_tracker()

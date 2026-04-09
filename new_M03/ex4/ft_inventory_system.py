@@ -90,10 +90,17 @@ def print_inventory_analysis(inventory: dict, order: list) -> None:
             if min_item is None or inventory[item] < inventory[min_item]:
                 min_item = item
 
-        print(f"Item most abundant: {max_item} with quantity {inventory[max_item]}")
-        print(f"Item least abundant: {min_item} with quantity {inventory[min_item]}")
+        print(
+            "Item most abundant: "
+            f"{max_item} with quantity {inventory[max_item]}"
+        )
+        print(
+                f"Item least abundant: {min_item}"
+                f" with quantity {inventory[min_item]}"
+        )
     else:
         print("No items in inventory to analyze.")
+
 
 def add_new_item(inventory):
     inventory.update({"magic_item": 1})
@@ -106,6 +113,7 @@ def main() -> None:
     inventory, order = parse_inventory(args)
     print_inventory_analysis(inventory, order)
     add_new_item(inventory)
+
 
 if __name__ == "__main__":
     main()
