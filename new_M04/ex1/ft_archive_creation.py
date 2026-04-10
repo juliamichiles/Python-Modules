@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-import typing
 import sys
 
 
@@ -7,7 +6,7 @@ def ft_archive_creation() -> None:
 
     ac = len(sys.argv)
     if ac != 2:
-        print("Usage: ft_ancient_text.py <file>\n")
+        print("Usage: ft_archive_creation <file>\n")
         return
 
     file = sys.argv[1]
@@ -15,20 +14,22 @@ def ft_archive_creation() -> None:
     print(f"Accessing file '{file}'")
     try:
 
-        print("---\n")
-        f = open(file, "r")        
+        f = open(file, "r")
         og_content = f.read()
+        print("---\n")
         print(og_content)
-        print("\n---")
+        print("---")
         f.close()
-        print("File '{file}' closed.")
-        
+        print(f"File '{file}' closed.\n")
+        print("Transform data:\n---\n")
+
         new_lines = []
         for line in og_content.splitlines():
             new_lines.append(line + "#")
 
         new_cont = "\n".join(new_lines) + "\n"
-
+        print(new_cont)
+        print("---")
         new_name = input("Enter new file name (or empty): ")
         if new_name == "":
             print("Not saving data.")
@@ -40,7 +41,7 @@ def ft_archive_creation() -> None:
             print(f"Data saved in file '{new_name}'.")
 
     except Exception as e:
-        print(f"Error: {e}")
+        print(f"Error opening file '{file}': {e}\n")
 
 
 if __name__ == "__main__":

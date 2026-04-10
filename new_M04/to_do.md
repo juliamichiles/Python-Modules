@@ -1,7 +1,7 @@
 ### Redo all exs:
 [X] ex0 - test again!
-[ ] ex1 - half done, but wrong, not printing everything it should
-[ ] ex2
+[X] ex1 - test again!
+[ ] ex2 - in progress
 [ ] ex3
 
 [ ] Flake8 + mypy

@@ -1,13 +1,22 @@
-=== CYBER ARCHIVES - PRESERVATION SYSTEM ===
+=== Cyber Archives Recovery & Preservation ===
+Accessing file 'ancient_fragment.txt'
+---
 
-Initializing new storage unit: new_discovery.txt
-Storage unit created successfully...
+[FRAGMENT 001] Digital preservation protocols established 2087
+[FRAGMENT 002] Knowledge must survive the entropy wars
+[FRAGMENT 003] Every byte saved is a victory against oblivion
 
-Inscribing preservation data...
-[ENTRY 001] New quantum algorithm discovered
-[ENTRY 002] Efficiency increased by 347%
-[ENTRY 003] Archived by Data Archivist trainee
+---
+File 'ancient_fragment.txt' closed.
 
-Data inscription complete. Storage unit sealed.
-Archive 'new_discovery.txt' ready for long-term preservation.
+Transform data:
+---
 
+[FRAGMENT 001] Digital preservation protocols established 2087#
+[FRAGMENT 002] Knowledge must survive the entropy wars#
+[FRAGMENT 003] Every byte saved is a victory against oblivion#
+
+---
+Enter new file name (or empty): new_fragment.txt
+Saving data to 'new_fragment.txt'
+Data saved in file 'new_fragment.txt'.
