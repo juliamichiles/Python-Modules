@@ -1,14 +1,13 @@
-=== CYBER ARCHIVES - VAULT SECURITY SYSTEM ===
+=== Cyber Archives Security ===
 
-Initiating secure vault access...
-Vault connection established with failsafe protocols
+Using 'secure_archive' to read from a nonexistent file:
+(False, "[Errno 2] No such file or directory: '/not/existing/file'")
 
-SECURE EXTRACTION:
-[CLASSIFIED] Quantum encryption keys recovered
-[CLASSIFIED] Archive integrity: 100%
+Using 'secure_archive' to read from an inaccessible file:
+(False, "[Errno 2] No such file or directory: '/etc/master.passwd'")
 
-SECURE PRESERVATION:
-[CLASSIFIED] New security protocols archived
-Vault automatically sealed upon completion
+Using 'secure_archive' to read from a regular file:
+(True, '[FRAGMENT 001] Digital preservation protocols established 2087\n[FRAGMENT 002] Knowledge must survive the entropy wars\n[FRAGMENT 003] Every byte saved is a victory against oblivion\n')
 
-All vault operations completed with maximum security.
+Using 'secure_archive' to write previous content to a new file:
+(True, 'Content successfully written to file')

@@ -10,20 +10,21 @@ def ft_stream_management() -> None:
         return
 
     file = sys.argv[1]
-    sys.stdout.write("=== Cyber Archives Recovery & Preservation ===")
-    sys.stdout.write(f"Accessing file '{file}'")
+    sys.stdout.write("=== Cyber Archives Recovery & Preservation ===\n")
+    sys.stdout.write(f"Accessing file '{file}'\n")
     
     try:
-
+        # opening file and printing content
         f = open(file, "r")
         og_content = f.read()
-        sys.stdout.write("---\n")
+        sys.stdout.write("---\n\n")
         sys.stdout.write(og_content)
-        sys.stdout.write("---\n")
+        sys.stdout.write("\n---\n")
         f.close()
-        sys.stdout.write(f"File '{file}' closed.\n")
-        sys.stdout.write("Transform data:\n---\n")
-
+        sys.stdout.write(f"File '{file}' closed.\n\n")
+        sys.stdout.write("Transform data:\n---\n\n")
+        
+        # modifying list with
         new_lines = []
         for line in og_content.splitlines():
             new_lines.append(line + "#")
