@@ -1,136 +1,109 @@
 #!/usr/bin/python3
-from abc import ABC, abstractmethod
-from typing import Any
+from abc import ABC
+from typing import Any, List, Dict, Union, Optional
+
 
 class DataProcessor(ABC):
+    def __init__(self) -> None:
+        # empty list and idx to internally store data
+        self.storage: List[tuple[int, str]] = []
+        self.rank: int = 0
+   
     @abstractmethod
     def validate(self, data: Any) -> bool:
+        # validates received data
         pass
 
-    @abstractmethod
-    def process(self, data: Any) -> str:
+   @abstractmethod
+    def ingest(self, data: Any) -> None:
+        # processes and stores received data
         pass
 
-    def format_output(self, result: str) -> str:
-        return f"Output: {result}"
-    
-    def ft_len(self, data: Any) -> int:
-        count = 0
-        for element in data:
-            count += 1
-        return (count)
-    
-    def count_words(self, data: Any) -> int:
-        started: int = 0
-        count: int = 0
-        for c in data:
-            if (c != ' ' and c != '\t') and started == 0:
-                started = 1
-                count += 1
-            if started == 1 and (c == ' ' or c == '\t'):
-                started = 0
-        return count
-    
+ 
+    def output(self) -> tuple[int, str]:
+        if not self.storage:
+            raise IndexError("No data to output!")
+        return self.storage.pop(0)
+
+
 class NumericProcessor(DataProcessor):
+    # processes ints, floats and lists of them
     
     def validate(self, data: Any) -> bool:
-    # Validate if data is appropriate for this processor    
-        try:
-            for element in data:
-                element * 1
+        if isinstance(data, (int, float)):
             return True
-        except TypeError:
+        elif isinstance(data, list):
+            # is that right? I think so...
+            if len(data) == 0:
+                return False
+            for element in data:
+                if not isinstance(data, (int, float)):
+                    return False
+            return True
+        else:
             return False
 
-    def ft_sum(self, data: Any) -> int:
-        total = 0
-        for element in data:
-            total += element
-        return total
-    
-    def process(self, data: Any) -> str:
-        #  Process the data and return result string
-        if self.validate(data):
-            count = self.ft_len(data)
-            elm_sum = self.ft_sum(data)
-            avg = elm_sum / count
-            return f"Processed {count} numeric values, sum={elm_sum}, avg={avg}"~
-        else:
-            return "Invalid numeric data"
+    def ingest(
+            self, 
+            data: Union[int, float, 
+            List[Union[int, float]]]
+        ) -> None:
+        if not self.validate(data):
+            raise ValueError("Improper numeric data")
 
-    def format_output(self, result: str) -> str:
-        # Format the output string
-        # I think I could remove it, but check subejct
-        pass
+        if isinstance(data, list):
+            for element in data:
+                self.storage.append((self.rank, str(element)))
+                self.rank += 1
+        else:
+            self.storage.append((self.rank, str(data)))
+            self.rank += 1
+
 
 class TextProcessor(DataProcessor):
-    def validate(self, data: Any) -> bool:
-        try:
-            data + ""
-            return True
-        except TypeError:
-            return False
-            
-    def process(self, data: Any) -> str:
-        if self.validate(data):
-            chars: int = self.ft_len(data) 
-            words: int = self.count_words(data)
-            return f"Processed text: {chars} characters, {words} words"
-        else:
-            return "Invalid text data"
+    # processes strings and lists of strings
 
-    def format_output(self, result: str) -> str:
-        # Format the output string
-        # I think I could remove it, but check subejct
-        pass   
+    def validate(self, data: Any) -> bool:
+        if isinstance(data, str):
+            return True
+        elif isinstance(data, list):
+            if len(data) == 0:
+                return False
+            for element in data:
+                if not isinstance(element, str):
+                    return False
+            return True
+        else:
+            return False
+
+    def ingest(self, data: Union[str, List[str]]) -> None:
+        if not self.validate(data):
+            raise ValueError("Improper text data")
+
+        if isinstance(data, list):
+            for element in data:
+                self.storage.append((self.rank, element))
+                self.rank += 1
+        else:
+            self.storage.append((self.rank, data))
+            self.rank += 1
 
 
 class LogProcessor(DataProcessor):
-    def split_log(self, data: Any) -> tup:
-        log_type: str = ""
-        message: str = ""
-        sep: int = 0
-
-        for c in data:
-            if sep == 0:
-                if c == ':':
-                    sep = 1
-                else:
-                    log_type += c
-            else:
-                message += c
-        return log_type, message
-
-    def validate(self, data: Any) -> bool:
-        found_sep: int = 0
-        i: int = 0
-
-        # maybe change this? Should only handle a few known types of logs
-        for c in data:
-            if found_sep == 0:
-                if c == ':':
-                    found_sep = 1
-                elif not ('A' <= c <= 'Z'):
+    # processes log data aka a dict or a list of dicts
+    
+    def validate(self, data: Any) - bool:
+        def validate_log(log_data: Any) -> bool:
+            if not isinstance(log_data, dict):
+                return False
+            for key, value in log_data.items():
+                if not isinstance(key, str) or not isinstance(value, str):
                     return False
-            else:
-                if i == 0:
-                    if c != ' ':
-                        return False
-                i += 1
-        return found_sep == 1
+            return True
+        
+        if isinstance(data, list):
+            return len(data) > 0 and all(validate_log(d) for d in data)
+        return False
 
-    def process(self, data: Any) -> str:
-        if self.validate(data) is True:
-            # is this proper tuple unpacking?
-            log_type, message: str = self.split_log(data)
-            return f""
-            # unfinished
-            # should also categorize each log
-
-
-def processor_demo() -> None:
-    # function that actually creates the streams and prints 
-    # output as expected by the example
-
-
-if __name__ == "__main__":
+        if validate_log(data):
+            return True
