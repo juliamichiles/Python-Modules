@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 from abc import ABC, abstractmethod
-from typing import Any, List, Dict, Union
+from typing import Any, List, Dict, Union, Sequence
 
 
 class DataProcessor(ABC):
@@ -42,10 +42,14 @@ class NumericProcessor(DataProcessor):
         else:
             return False
 
+    # changed List[Union[...]] to Sequence[Union[...]] bc of mypy
     def ingest(
-            self,
-            data: Union[int, float,
-            List[Union[int, float]]]
+        self,
+        data: Union[
+            int,
+            float,
+            Sequence[Union[int, float]]
+        ]
     ) -> None:
         if not self.validate(data):
             raise ValueError("Improper numeric data")
@@ -102,10 +106,10 @@ class LogProcessor(DataProcessor):
 
         if isinstance(data, list):
             return len(data) > 0 and all(validate_log(d) for d in data)
-        return False
 
         if validate_log(data):
             return True
+        return False
 
     def ingest(
                self,
@@ -181,11 +185,81 @@ def expected_demo() -> None:
 
 # COMMENT THE FUNCTION BELLOW BEFORE SUBMISSION!
 # def more_tests() -> None:
-    # larger and longer tests for each processor
-    # tests with empty data sets for each processor
-    # directly instantiate base class to see what happens
-
-
+#
+#     print("\n\n--- MORE TESTS! ---\n")
+#     # larger and longer tests for each processor
+#     # tests with empty data sets for each processor
+#
+#     # directly instantiate base class to see what happens
+#     print("1 - What happens when we try to instantiate an abc directly?")
+#     try:
+#         data_proc = DataProcessor()
+#         data = "haha"
+#         print(f"Validating 'haha': {data_proc.validate(data)}")
+#     except Exception as e:
+#         print(f"Caught expected TypeError: {e}")
+#
+#     # FIFO and Rank persistence (for NumericProcessor)
+#     print("\n2 - Now let's check if FIFO is being followed...")
+#     n_proc = NumericProcessor()
+#     n_proc.ingest(100)
+#     n_proc.ingest([200, 300])
+#
+#     # First out
+#     r1, v1 = n_proc.output()
+#     print(f"First out (Expect 0, '100'): {r1}, {v1}")
+#
+#     # Now, rank should continue from 3
+#     n_proc.ingest([400, 500, 600, 700, 1000, -1000])
+#     while True:
+#         try:
+#             r, v = n_proc.output()
+#             print(f"Extracted Rank {r}: {v}")
+#         except (IndexError, ValueError):
+#             break
+#
+#     # Mixed-Type "sabotage"
+#     print("\n3 - Let's \"sabotage\" our processor with mixed data now!")
+#     t_proc = TextProcessor()
+#     poisoned_list = ["Good", 123, "Good"]
+#     is_valid = t_proc.validate(poisoned_list)
+#     print(f"Is list with '123' valid? {is_valid}")
+#     try:
+#         if not is_valid:
+#             print("Attempt to ingest invalid data!")
+#             t_proc.ingest(poisoned_list)
+#     except ValueError as e:
+#         print(f"{e}")
+#
+#     # Log chaos
+#     print("\n4 - Now it's the log processor's turn...")
+#     l_proc = LogProcessor()
+#     chaos = [
+#         ({}, "Empty Dict"),
+#         ({"key": 123}, "Non-string value"),
+#         ({"level": "INFO", "msg": "Hi", "extra": "data"}, "Multi-key")
+#     ]
+#
+#     for data, test in chaos:
+#         valid = l_proc.validate(data)
+#         print(f"Testing {test}: Valid={valid}")
+#         if valid:
+#             l_proc.ingest(data)
+#             print("Resulting output: {l_proc.output()}")
+#
+#     # Output from empty processor
+#     print("\n5 - Let's try to get output from an empty processor")
+#     empty_proc = TextProcessor()
+#     try:
+#         empty_proc.output()
+#     except IndexError:
+#         print("Caught IndexError: Cannot output from empty processor.")
+#     except Exception as e:
+#         print(f"Caught unexpected exception: {type(e).__name__}")
+#
+#     print("\nNow we're done :)")
+#
+#
 if __name__ == '__main__':
     expected_demo()
-#   more_tests() #COMMENT this line before submission
+#    more_tests() #  COMMENT this line before submission

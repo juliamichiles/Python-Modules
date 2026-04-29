@@ -2,11 +2,14 @@
 _I think the main.py is from the old version of the subject_
 
 #EX0:
- [ ] Flake8 + mypy .
- [ ] Write more_tests() and better test this exercise
- [ ] Ensure it only gets the expectes mypy error
- [ ] Comment more_tests() function
+ [X] Flake8 + mypy .
+ [X] Write more_tests() and better test this exercise
+ [X] Ensure it only gets the expectes mypy error
+ [X] Comment more_tests() function
+ [X] Tested
+ [ ] Double check if code matches all requirements
 
+#EX1:
 
 #OLD:
 [ ] LogProcessor is unfinished	
