@@ -1,5 +1,6 @@
-#OBS: 
-_I think the main.py is from the old version of the subject_
+> [!WARNING]
+> Don't forget to run 'mv to_be_gitignore .gitignore' before the first
+> git push on submission repo!!!
 
 #EX0:
  [X] Flake8 + mypy .
@@ -15,14 +16,8 @@ _I think the main.py is from the old version of the subject_
  [X] Double check if code matches all requirements
 
 #EX2:
- [ ] Study abt protocols + @runtime_checkable
+ [X] Study abt protocols + @runtime_checkable
+ [X] Flake8 + mypy .
+ [X] Tested
+ OBS.: Has an extra plugin class
 
-
-#OLD:
-[ ] LogProcessor is unfinished	
-	[ ] Review validation method
-	[ ] Finish processing method
-[ ] Missing demo function
-[ ] Currently untested
-[ ] Compare output with example
-[ ] Flake8
