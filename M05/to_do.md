@@ -10,6 +10,13 @@ _I think the main.py is from the old version of the subject_
  [ ] Double check if code matches all requirements
 
 #EX1:
+ [X] Flake8 + mypy .
+ [X] Tested
+ [X] Double check if code matches all requirements
+
+#EX2:
+ [ ] Study abt protocols + @runtime_checkable
+
 
 #OLD:
 [ ] LogProcessor is unfinished	

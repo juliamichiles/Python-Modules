@@ -1,0 +1,27 @@
+=== Code Nexus - Data Stream ===
+
+Initialize Data Stream...
+== DataStream statistics ==
+No processor found, no data
+
+Registering Numeric Processor
+
+Send first batch of data on stream: ['Hello world', [3.14, -1, 2.71], [{'log_level': 'WARNING', 'log_message': 'Telnet access! Use ssh instead'}, {'log_level': 'INFO', 'log_message': 'User wil is connected'}], 42, ['Hi', 'five']]
+DataStream error - Can't process element in stream: Hello world
+DataStream error - Can't process element in stream: [{'log_level': 'WARNING', 'log_message': 'Telnet access! Use ssh instead'}, {'log_level': 'INFO', 'log_message': 'User wil is connected'}]
+DataStream error - Can't process element in stream: ['Hi', 'five']
+== DataStream statistics ==
+Numeric Processor: total 4 items processed, remaining 4 on processor
+
+Registering other data processors
+Send the same batch again
+== DataStream statistics ==
+Numeric Processor: total 8 items processed, remaining 8 on processor
+Text Processor: total 3 items processed, remaining 3 on processor
+Log Processor: total 2 items processed, remaining 2 on processor
+
+Consume some elements from the data processors: Numeric 3, Text 2, Log 1
+== DataStream statistics ==
+Numeric Processor: total 8 items processed, remaining 5 on processor
+Text Processor: total 3 items processed, remaining 1 on processor
+Log Processor: total 2 items processed, remaining 1 on processor

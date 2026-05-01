@@ -128,4 +128,111 @@ class LogProcessor(DataProcessor):
             self.rank += 1
 
 
+class DataStream:
+    # receive a stream of data containing different types and routs
+    # each element to the appropriate data processor
 
+    def __init__(self) -> None:
+        self.processors: list[DataProcessor] = []
+
+    def register_processor(self, proc: DataProcessor) -> None:
+        # registers a new data processor to process the data stream
+        self.processors.append(proc)
+
+    def process_stream(self, stream: list[Any]) -> None:
+        # analyzes each element of the list received as a parameter and
+        # send it to the appropriate processor
+
+        for element in stream:
+            handled = False
+            for proc in self.processors:
+                if proc.validate(element):
+                    try:
+                        proc.ingest(element)
+                    except Exception as e:
+                        print(f"DataStream error - Ingestion failed: {e}")
+                    handled = True
+                    break
+            if not handled:
+                print(
+                        "DataStream error - Can't process"
+                        f" element in stream: {element}"
+                )
+
+    def print_processors_stats(self) -> None:
+        # prints stream statistics
+
+        print("== DataStream statistics ==")
+        if not self.processors:
+            print("No processor found, no data")
+            return
+
+        for proc in self.processors:
+            name = type(proc).__name__
+            spaced_name = name.replace("Processor", " Processor")
+
+            total = proc.rank
+            remaining = len(proc.storage)
+            print(
+                    f"{spaced_name}: total {total} items processed,"
+                    f" remaining {remaining} on processor"
+            )
+
+
+def data_stream_demo() -> None:
+    print("=== Code Nexus - Data Stream ===\n")
+    print("Initialize Data Stream...")
+
+    # attempt printing empty DataStream stats
+    stream = DataStream()
+    stream.print_processors_stats()
+
+    data = [
+        'Hello world',
+        [3.14, -1, 2.71],
+        [{'log_level': 'WARNING',
+            'log_message': 'Telnet access! Use ssh instead'},
+         {'log_level': 'INFO', 'log_message': 'User wil is connected'}],
+        42,
+        ['Hi', 'five']
+    ]
+
+    # adding the NumericProcessor
+    print("\nRegistering Numeric Processor\n")
+    num_p = NumericProcessor()
+    stream.register_processor(num_p)
+
+    print(f"Send first batch of data on stream: {data}")
+    stream.process_stream(data)
+    stream.print_processors_stats()
+
+    # adding the remaining processors
+    print("\nRegistering other data processors")
+    txt_p = TextProcessor()
+    log_p = LogProcessor()
+    stream.register_processor(txt_p)
+    stream.register_processor(log_p)
+
+    print("Send the same batch again")
+    stream.process_stream(data)
+    stream.print_processors_stats()
+
+    print(
+            "\nConsume some elements from the data processors:"
+            " Numeric 3, Text 2, Log 1"
+    )
+
+    for _ in range(3):
+        num_p.output()
+
+    for _ in range(2):
+        txt_p.output()
+
+    for _ in range(1):
+        log_p.output()
+
+    stream.print_processors_stats()
+
+
+if __name__ == '__main__':
+    data_stream_demo()
