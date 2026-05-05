@@ -5,7 +5,7 @@ def healing_potion() -> str:
     earth = create_earth()
     air = create_air()
 
-    return f"Healing potion brewed with '{earth}' '{air}'"
+    return f"Healing potion brewed with '{earth}' and '{air}'"
 
 
 def strength_potion() -> str:
