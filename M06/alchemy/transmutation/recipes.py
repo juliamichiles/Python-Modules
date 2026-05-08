@@ -1,8 +1,9 @@
 import elements
 from ..potions import strength_potion
 from ..elements import create_air
- 
-def lead_to_gold() -> None:
+
+
+def lead_to_gold() -> str:
 
     s_potion = strength_potion()
     fire = elements.create_fire()

@@ -3,7 +3,7 @@ import alchemy.transmutation.recipes
 
 
 def ft_transmutation_0() -> None:
-    
+
     gold = alchemy.transmutation.recipes.lead_to_gold()
 
     print("=== Transmutation 0 ===")
