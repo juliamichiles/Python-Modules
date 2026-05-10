@@ -1,5 +1,5 @@
 from typing import Any
-from .ex0 import CreatureFactory
+from ex0.factory import CreatureFactory
 from .capability import TransformCapability, HealCapability
 from .special_creatures import Sproutling, Bloomelle, Shiftling, Morphagon
 
@@ -11,11 +11,11 @@ class TransformCreatureFactory(CreatureFactory):
         return base_creature
 
     def create_evolved(self) -> Any:
-        evolved_creature = Morphagon("Morphagon", "Normal/Flying")
-        return evolved_creture
+        evolved_creature = Morphagon("Morphagon", "Normal/Dragon")
+        return evolved_creature
 
 
-class  HealingCreatureFactory(CreatureFactory):
+class HealingCreatureFactory(CreatureFactory):
 
     def create_base(self) -> Any:
         base_creature = Sproutling("Sproutling", "Grass")

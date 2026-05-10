@@ -5,4 +5,6 @@
 	[X] done and tested
 	[X] flake8 + mypy
 
-	
+# ex1:
+	[X] done and tested
+    [ ] flake8 + mypy (has flake8 errors!)

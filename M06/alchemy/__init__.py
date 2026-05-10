@@ -1,9 +1,11 @@
 # Part I
-from .elements import create_air  # noqa: F401
+from .elements import create_air
 
 # Part II
-from . import potions  # noqa: F401
-from .potions import healing_potion as heal  # noqa: F401
+from . import potions
+from .potions import healing_potion as heal
 
 # Part III
-from .transmutation.recipes import lead_to_gold  # noqa: F401
+from .transmutation.recipes import lead_to_gold
+
+__all__ = ["create_air", "heal", "lead_to_gold", "potions"]

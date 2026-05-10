@@ -10,10 +10,11 @@
 # Before submission:
 [ ] Remove unwanted files
 [ ] Run the command on top of this file
-[ ] Double check if its ok to use '# noqa: F401' instead of '__all__'
+[ ] Double check if its ok to use '__all__' instead of '# noqa: F401'
 	to silence flake8 errors
 [ ] Review notes and key concepts
 [ ] Ensure everything runs as expected in school environment
+	(and after adding __all__)
 
 
 # Take notes on:
