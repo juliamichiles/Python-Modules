@@ -8,16 +8,16 @@ if __name__ == '__main__':
 
     print("Testing Creature with healing capability")
     print(" base:")
-    print(f"{base_healer.describe()}")
-    print(f"{base_healer.attack()}")
-    print(f"{base_healer.heal('itself')}")
+    print(base_healer.describe())
+    print(base_healer.attack())
+    print(base_healer.heal('itself'))
 
     evolved_healer = h_factory.create_evolved()
 
     print(" evolved:")
-    print(f"{evolved_healer.describe()}")
-    print(f"{evolved_healer.attack()}")
-    print(f"{evolved_healer.heal('itself and others')}")
+    print(evolved_healer.describe())
+    print(evolved_healer.attack())
+    print(evolved_healer.heal('itself and others'))
 
     print()
 
@@ -26,18 +26,17 @@ if __name__ == '__main__':
 
     print("Testing Creature with transform capability")
     print(" base:")
-    print(f"{base_trans.describe()}")
-    print(f"{base_trans.attack()}")
-    print(f"{base_trans.transform()}")
-    print(f"{base_trans.attack()}")
-    print(f"{base_trans.revert()}")
+    print(base_trans.describe())
+    print(base_trans.attack())
+    print(base_trans.transform())
+    print(base_trans.attack())
+    print(base_trans.revert())
 
     evolved_trans = t_factory.create_evolved()
 
     print(" evolved:")
-    print(f"{evolved_trans.describe()}")
-    print(f"{evolved_trans.attack()}")
-    print(f"{evolved_trans.transform()}")
-    print(f"{evolved_trans.attack()}")
-    print(f"{evolved_trans.revert()}")
-
+    print(evolved_trans.describe())
+    print(evolved_trans.attack())
+    print(evolved_trans.transform())
+    print(evolved_trans.attack())
+    print(evolved_trans.revert())

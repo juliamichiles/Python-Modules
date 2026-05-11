@@ -7,4 +7,10 @@
 
 # ex1:
 	[X] done and tested
-    [ ] flake8 + mypy (has flake8 errors!)
+    [X] flake8 + mypy
+
+# ex2:
+    [X] done and tested
+    [X] flake8 
+	[ ] fix mypy ERRORS
+	[ ] Double check with AI if it follows all subject requirements

@@ -12,6 +12,7 @@ class Sproutling(Creature, HealCapability):
     def attack(self) -> str:
         return f"{self.name} uses Vine Whip!"
 
+
 class Bloomelle(Creature, HealCapability):
     def __init__(self, name: str, c_type: str) -> None:
         Creature.__init__(self, name, c_type)
@@ -21,6 +22,7 @@ class Bloomelle(Creature, HealCapability):
 
     def attack(self) -> str:
         return f"{self.name} uses Petal Dance!"
+
 
 class Shiftling(Creature, TransformCapability):
 

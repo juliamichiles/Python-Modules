@@ -1,6 +1,7 @@
 to_*
 *cache*
-mine
+mine*
 unused
-expected
+expected*
 tools
+*.swp
