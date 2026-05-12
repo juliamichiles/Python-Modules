@@ -8,9 +8,14 @@
 # ex1:
 	[X] done and tested
     [X] flake8 + mypy
+	[ ] is doesn't raise errors, but maybe change this: 
+		'def create_base(self) -> Any:'
+		to:
+		'def create_base(self) -> Creature:'
+		if so, also add 'from ex0.creatures import Creature'
 
 # ex2:
     [X] done and tested
     [X] flake8 
-	[ ] fix mypy ERRORS
-	[ ] Double check with AI if it follows all subject requirements
+	[X] fix mypy ERRORS
+	[X] Double check with AI if it follows all subject requirements

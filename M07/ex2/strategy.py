@@ -38,14 +38,10 @@ class AggressiveStrategy(BattleStrategy):
 
     def act(self, creature: Creature) -> None:
         if self.is_valid(creature):
-            c_creature = cast(
-                    Creature | TransformCapability, 
-                    creature
-            )  # all of this silent a mypy error...
-            
-            print(c_creature.transform())
-            print(c_creature.attack())
-            print(c_creature.revert())
+            t_creature = cast(TransformCapability, creature)
+            print(t_creature.transform())
+            print(creature.attack())
+            print(t_creature.revert())
         else:
             raise BattleError(
                     f"Invalid Creature '{creature.name}'"
@@ -63,12 +59,9 @@ class DefensiveStrategy(BattleStrategy):
 
     def act(self, creature: Creature) -> None:
         if self.is_valid(creature):
-            c_creature = cast(
-                    Creature | HealCapability,
-                    creature
-            )  # all of this silent a mypy error...
-            print(c_creature.attack())
-            print(c_creature.heal('itself'))
+            h_creature = cast(HealCapability, creature)
+            print(creature.attack())
+            print(h_creature.heal('itself'))
         else:
             raise BattleError(
                     f"Invalid Creature '{creature.name}'"

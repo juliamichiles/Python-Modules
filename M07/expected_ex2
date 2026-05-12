@@ -11,7 +11,6 @@ Sproutling is a Grass type Creature
 Flameling uses Ember!
 Sproutling uses Vine Whip!
 Sproutling heals itself for a small amount
-
 Tournament 1 (error)
  [ (Flameling+Aggressive), (Healing+Defensive) ]
 *** Tournament ***
@@ -23,7 +22,6 @@ Flameling is a Fire type Creature
 Sproutling is a Grass type Creature
  now fight!
 Battle error, aborting tournament: Invalid Creature 'Flameling' for this aggressive strategy
-
 Tournament 2 (multiple)
  [ (Aquabub+Normal), (Healing+Defensive), (Transform+Aggressive) ]
 *** Tournament ***
