@@ -1,0 +1,14 @@
+Alien Contact Log Validation
+======================================
+Valid contact report:
+ID: AC_2024_001
+Type: radio
+Location: Area 51, Nevada
+Signal: 8.5/10
+Duration: 45 minutes
+Witnesses: 5
+Message: 'Greetings from Zeta Reticuli'
+
+======================================
+Expected validation error:
+Telepathic contact requires at least 3 witnesses
