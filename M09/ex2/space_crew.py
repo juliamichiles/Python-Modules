@@ -42,12 +42,49 @@ class SpaceMission(BaseModel):
              raise ValueError('Mission ID must start with "M"')
         
         high_rank = False
-        for member in crew:   
+        for member in self.crew:   
             if member == Rank.CAPITAIN or member == Rank.COMMANDER:
                 high_rank = True
         if not high_rank:
             raise ValueError('Must have at least one Commander or Captain')
 
-        if duration_days > 365:
-    # Long missions (> 365 days) need 50% experienced crew (5+ years)
-    # All crew members must be active
+        if self.duration_days > 365:
+            exp_crew = 0
+            for member in self.crew:
+                if member.years_experience > 4:
+                    exp_crew += 1
+            if exp_crew/len(self.crew) < 0.5:
+                raise ValueError(
+                        'Long missions (> 365 days) need'
+                        ' 50% experienced crew (5+ years)'
+                )
+        inact_memb : list[CrewMember] = []
+        for member in self.crew:
+            if not member.is_active:
+                inact_memb.append(member)
+        if inact_memb:
+            raise ValueError(
+                    'All crew members must be active - '
+                    f'the following member(s) is/are inactive:\n{inact_memb}'
+                )
+
+
+def print_mission(m: SpaceMission) -> None:
+    
+    print(f"Mission: {m.mission_name}")
+    print(f"ID: {m.mission_id}")
+    print(f"Destination: {m.destination}")
+    print(f"Duration: {m.duration_days} days")
+    print(f"Budget: ${m.budget_millions}M")  # TODO: modify to print a single 0 for float
+    print(f"Crew size: {len(m.crew)}")
+    print("Crew members:")
+    for memb in m.crew:
+        print(
+                f"- {memb.name} ({memb.rank.value}"
+                f" - {memb.specialization})"
+        )
+
+
+def main() -> None
+
+# use JSON???
