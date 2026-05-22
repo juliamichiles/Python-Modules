@@ -31,7 +31,7 @@ class SpaceMission(BaseModel):
     destination: str = Field(min_length=3, max_length=50)
     launch_date: dt = Field(default_factory=dt.now)
     duration_days: int = Field(ge=1, le=3650) # 1-3650 days (max 10 years)
-    crew: list[CrewMember] = Field(min_length=5, max_length=12)
+    crew: list[CrewMember] = Field(min_length=3, max_length=12)
     mission_status: str = Field(default="planned") # String, defaults to "planned"
     budget_millions: float = Field(ge=1.0, le=10000.0) #  1.0-10000.0
 
@@ -43,7 +43,7 @@ class SpaceMission(BaseModel):
         
         high_rank = False
         for member in self.crew:   
-            if member == Rank.CAPITAIN or member == Rank.COMMANDER:
+            if member.rank == Rank.CAPTAIN or member.rank == Rank.COMMANDER:
                 high_rank = True
         if not high_rank:
             raise ValueError('Must have at least one Commander or Captain')
@@ -67,6 +67,7 @@ class SpaceMission(BaseModel):
                     'All crew members must be active - '
                     f'the following member(s) is/are inactive:\n{inact_memb}'
                 )
+        return self
 
 
 def print_mission(m: SpaceMission) -> None:
@@ -85,6 +86,7 @@ def print_mission(m: SpaceMission) -> None:
         )
 
 
-def main() -> None
+def main() -> None:
+    # TODO: use JSON???
 
-# use JSON???
+
