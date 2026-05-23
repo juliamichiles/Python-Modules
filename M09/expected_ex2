@@ -1,0 +1,17 @@
+Space Mission Crew Validation
+=========================================
+Valid mission created:
+Mission: Mars Colony Establishment
+ID: M2024_MARS
+Destination: Mars
+Duration: 900 days
+Budget: $2500.0M
+Crew size: 3
+Crew members:
+- Sarah Connor (commander) - Mission Command
+- John Smith (lieutenant) - Navigation
+- Alice Johnson (officer) - Engineering
+
+=========================================
+Expected validation error:
+Mission must have at least one Commander or Captain
