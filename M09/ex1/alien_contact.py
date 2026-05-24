@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 from enum import Enum
 from datetime import datetime as dt
-from pydantic import BaseModel, Field, model_validator, ValidationError
+from pydantic import (  # type: ignore
+        BaseModel,
+        Field,
+        model_validator,
+        ValidationError
+        )
 
 
 class ContactType(str, Enum):

@@ -1,4 +1,7 @@
 my_venv/
 *_venv/
 mine
-expected
+expected*
+.mypy_cache/
+to_*
+tools/

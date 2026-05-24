@@ -2,24 +2,28 @@
 [ ] Work in a venv
 [ ] Take notes on:
 	- Pydantic + basic usage of BaseModel, Field and model_validator
+	- All blue questions in the subject
 	- default_factory
 [ ] WHERE/WHEN WAS I SUPPOSED TO HAVE USED THE DATA GENERATORS???
 
 # ex0:
 	[X] Done + Tested
 	[X] Flake8 + Mypy 
+	[X] Test better + diff
+	[ ] AI double-check
 
 # ex1:
 	[X] Done + Tested
 	[X] Flake8 + Mypy 
+	[X] Test better + diff
+	[ ] AI double-check
 
 # ex2:
-	[X] Started
-	[X] Almost finished
-	[ ] has a mypy error - add comment to fix
-	[ ] Looks a bit different from the example
-	[ ] Test better + AI double-check
-
+	[X] Done + Tested
+	[X] Flake8 + Mypy
+	[X] Test better + diff
+	[X] AI double-check
+	
 # OBS:
 Right now, mypy must be installed inside virtual environment an run as:
 	'python -m mypy space_station.py'

@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-from pydantic import BaseModel, Field, ValidationError, model_validator
 from datetime import datetime as dt
 from enum import Enum
+from pydantic import (  # type: ignore
+        BaseModel,
+        Field,
+        ValidationError,
+        model_validator
+        )
 
 
 class Rank(str, Enum):
@@ -28,7 +33,7 @@ class SpaceMission(BaseModel):
 
     mission_id: str = Field(min_length=5, max_length=15)
     mission_name: str = Field(min_length=3, max_length=100)
-    destination: str = Field(min_length=3, max_length=50)
+    destination: str = Field(min_length=1, max_length=50)
     launch_date: dt = Field(default_factory=dt.now)
     duration_days: int = Field(ge=1, le=3650)
     crew: list[CrewMember] = Field(min_length=3, max_length=12)
@@ -79,9 +84,10 @@ def print_mission(m: SpaceMission) -> None:
     print(f"ID: {m.mission_id}")
     print(f"Destination: {m.destination}")
     print(f"Duration: {m.duration_days} days")
-    print(f"Budget: ${m.budget_millions}M")  # TODO: print a single 0 for float
+    print(f"Budget: ${m.budget_millions:.1f}M")
     print(f"Crew size: {len(m.crew)}")
     print("Crew members:")
+
     for memb in m.crew:
         print(
                 f"- {memb.name} ({memb.rank.value})"
@@ -207,6 +213,7 @@ def main() -> None:
 
     print("Space Mission Crew Validation")
     print("=========================================")
+    print("Valid mission created:")
 
     try:
         # ** -> dict unpacking
