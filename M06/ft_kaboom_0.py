@@ -10,7 +10,7 @@ def ft_kaboom_0() -> None:
 
     print("=== Kaboom 0 ===")
     print("Using grimoire module directly")
-    print(f"Testing record light spell: {spell}")
+    print(f"Testing record lighsfsfsfsfsfsfsfsfsfsfsfsfst ssjsjsjsjsjsjsjsjsjsjjsell: {spell}")
 
 
 if __name__ == '__main__':

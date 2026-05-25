@@ -4,7 +4,7 @@ from ex0.creatures import Creature
 
 class Sproutling(Creature, HealCapability):
     def __init__(self, name: str, c_type: str) -> None:
-        Creature.__init__(self, name, c_type)
+        super().__init__(name, c_type)
 
     def heal(self, target: str) -> str:
         return f"{self.name} heals {target} for a small amount"
@@ -15,7 +15,7 @@ class Sproutling(Creature, HealCapability):
 
 class Bloomelle(Creature, HealCapability):
     def __init__(self, name: str, c_type: str) -> None:
-        Creature.__init__(self, name, c_type)
+        super().__init__(name, c_type)
 
     def heal(self, target: str) -> str:
         return f"{self.name} heals {target} for a large amount"
@@ -27,7 +27,7 @@ class Bloomelle(Creature, HealCapability):
 class Shiftling(Creature, TransformCapability):
 
     def __init__(self, name: str, c_type: str) -> None:
-        Creature.__init__(self, name, c_type)
+        super().__init__(name, c_type)
         TransformCapability.__init__(self)
 
     def attack(self) -> str:
@@ -47,7 +47,7 @@ class Shiftling(Creature, TransformCapability):
 class Morphagon(Creature, TransformCapability):
 
     def __init__(self, name: str, c_type: str) -> None:
-        Creature.__init__(self, name, c_type)
+        super().__init__(name, c_type)
         TransformCapability.__init__(self)
 
     def attack(self) -> str:

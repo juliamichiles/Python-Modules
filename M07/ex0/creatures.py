@@ -19,22 +19,22 @@ class Creature(ABC):
 class Flameling(Creature):
 
     def attack(self) -> str:
-        return "Flameling uses Ember!"
+        return f"{self.name} uses Ember!"
 
 
 class Pyrodon(Creature):
 
     def attack(self) -> str:
-        return "Pyrodon uses Flamethrower!"
+        return f"{self.name} uses Flamethrower!"
 
 
 class Aquabub(Creature):
 
     def attack(self) -> str:
-        return "Aquabub uses Water Gun!"
+        return f"{self.name} uses Water Gun!"
 
 
 class Torragon(Creature):
 
     def attack(self) -> str:
-        return "Torragon uses Hydro Pump!"
+        return f"{self.name} uses Hydro Pump!"

@@ -19,14 +19,18 @@ def battle(opponents: List[Tuple[
     op_count = len(opponents)
     print(f"*** Tournament ***\n{op_count} opponents involved")
     try:
+
+        contestants = []
+        for fact, strat in opponents:
+            creat = fact.create_base()
+            pair = (creat, strat)
+            contestants.append(pair)
+
         for i in range(op_count):
             for j in range(i + 1, op_count):
                 # starts from i + 1 to op_count
-                fact_1, strat_1 = opponents[i]
-                fact_2, strat_2 = opponents[j]
-
-                c_1 = fact_1.create_base()
-                c_2 = fact_2.create_base()
+                c_1, strat_1 = contestants[i]
+                c_2, strat_2 = contestants[j]
 
                 print("\n* Battle *")
                 print(f"{c_1.describe()}\n vs.\n{c_2.describe()}\n now fight!")
