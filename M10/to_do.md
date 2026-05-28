@@ -21,5 +21,10 @@
     [X] AI double-check
 
 # ex3:
+	[X] Wrote all functions
+	[ ] Write a main()
+    [ ] Flake8 + Mypy
+    [ ] Tests
+    [ ] AI double-check
 
 # ex4:
