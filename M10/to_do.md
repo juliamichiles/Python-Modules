@@ -28,3 +28,10 @@
     [X] AI double-check
 
 # ex4:
+	[X] Wrote all functions
+	[ ] Write a main()
+    [ ] Flake8 + Mypy
+    [ ] Tests
+    [ ] AI double-check
+	[ ] Should add return type hints to the wraps???
+	[ ] Has errors on some functions
