@@ -33,7 +33,7 @@ def power_filter(mages: list[dict], min_power: int) -> list[dict]:
 def spell_transformer(spells: list[str]) -> list[str]:
 
     # Uses map() to apply the lambda func to all elements
-        # in the list (add "* " prefix and " *" suffix)
+    # in the list (add "* " prefix and " *" suffix)
 
     new_spells = list(map(
             lambda new: "* " + new + " *",

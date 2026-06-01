@@ -29,9 +29,8 @@
 
 # ex4:
 	[X] Wrote all functions
-	[ ] Write a main()
-    [ ] Flake8 + Mypy
-    [ ] Tests
-    [ ] AI double-check
-	[ ] Should add return type hints to the wraps???
-	[ ] Has errors on some functions
+	[X] Write a main()
+    [X] Flake8 + Mypy
+    [X] Tests
+    [X] AI double-check
+	[X] Should add return type hints to the wraps??? Probably not
